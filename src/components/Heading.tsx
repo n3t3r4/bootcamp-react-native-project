@@ -1,4 +1,5 @@
 import { Text, StyleSheet } from "react-native";
+import styled from "styled-components";
 
 type HeadingProps = {
   content: string;

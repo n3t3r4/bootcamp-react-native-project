@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-native";
+import { Button, View } from "react-native";
 
 type ButtonProps = {
   title: string;
@@ -7,5 +7,15 @@ type ButtonProps = {
 };
 
 export function MyButton(props: ButtonProps) {
-  return <Button title={props.title} onPress={props.onPress} />;
+  return (
+    <View
+      style={{
+        marginTop: 15,
+        marginLeft: 80,
+        marginRight: 80,
+      }}
+    >
+      <Button title={props.title} onPress={props.onPress} />
+    </View>
+  );
 }

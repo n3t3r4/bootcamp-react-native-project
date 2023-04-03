@@ -1,67 +1,70 @@
-import { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
-import { MyButton } from "./src/components/Button";
-import { ErrorText } from "./src/components/ErrorText";
-import { Heading } from "./src/components/Heading";
-import { Paragraph } from "./src/components/Paragraph";
-import { TextField } from "./src/components/TextField";
-import styled from "styled-components";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { CreateNotePad } from "./src/screens/CreateNotePad";
+import { EditNotePad } from "./src/screens/EditNotePad";
+import { Home } from "./src/screens/Home";
+import screens from "./src/screens/screens.json";
+import { ViewNotePad } from "./src/screens/ViewNotePad";
+import { FontAwesome, Ionicons, AntDesign, Feather } from "@expo/vector-icons";
+
+import React from "react";
+import { NotePadList } from "./src/screens/NotePadList";
 
 export default function App() {
-  const [text, textChange] = useState("");
+  const Drawer = createDrawerNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start!</Text>
-
-      <MyButton
-        title="teste"
-        onPress={() => {
-          Alert.alert("button pressed", "this buttons was pressed " + text);
-        }}
-      />
-
-      <TextField
-        placeholder="Type something here..."
-        value={text}
-        onChangeText={(input) => {
-          textChange(input);
-        }}
-      />
-
-      <Paragraph innerText="Pensando mais a longo prazo, a revolução dos costumes não pode mais se dissociar dos índices pretendidos." />
-
-      <Heading content="H1 Teste" type={Headings.h1} />
-
-      <Heading content="H2 Teste" type={Headings.h2} />
-
-      <Heading content="H3 Teste" type={Headings.h3} />
-
-      <ErrorText content="Isso é um erro" error={true} />
-
-      <ErrorText content="Isso é um erro" error={false} />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName={screens.home}>
+        <Drawer.Screen
+          name={screens.home}
+          component={Home}
+          options={{
+            drawerIcon: ({ color, size }) => {
+              return <FontAwesome name="home" size={size} color={color} />;
+            },
+          }}
+        />
+        <Drawer.Screen
+          name={screens.createNotePad}
+          component={CreateNotePad}
+          options={{
+            drawerIcon: ({ color, size }) => {
+              return <Ionicons name="create" size={size} color={color} />;
+            },
+          }}
+        />
+        <Drawer.Screen
+          name={screens.viewNotePad}
+          component={ViewNotePad}
+          options={{
+            drawerIcon: ({ color, size }) => {
+              return (
+                <FontAwesome name="sticky-note" size={size} color={color} />
+              );
+            },
+          }}
+        />
+        <Drawer.Screen
+          name={screens.editNotePad}
+          component={EditNotePad}
+          options={{
+            drawerIcon: ({ color, size }) => {
+              return <AntDesign name="edit" size={size} color={color} />;
+            },
+          }}
+        />
+        <Drawer.Screen
+          name={screens.notePadList}
+          component={NotePadList}
+          options={{
+            drawerIcon: ({ color, size }) => {
+              return <Feather name="list" size={size} color={color} />;
+            },
+          }}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
-const Headings = StyleSheet.create({
-  h1: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  h2: {
-    fontSize: 20,
-  },
-  h3: {
-    fontSize: 17,
-  },
-});
