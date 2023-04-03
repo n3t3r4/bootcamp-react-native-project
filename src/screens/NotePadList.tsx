@@ -23,16 +23,17 @@ export function NotePadList({
     const exitGetData = navigation.addListener("focus", async () => {
       const { data } = await api.get<Notepads[]>("/notepads");
       updateNotepad(data);
+      /* console.log(data); */
     });
 
     return exitGetData;
   }, []);
 
-  console.log(notepads);
+  /* console.log(notepads); */
 
   return (
     <FlatList
-      data={notepads}
+      data={notepads.reverse()}
       renderItem={(item) => {
         return (
           <TouchableOpacity
