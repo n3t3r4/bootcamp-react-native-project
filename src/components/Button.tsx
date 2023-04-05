@@ -3,6 +3,7 @@ import { Button, View } from "react-native";
 
 type ButtonProps = {
   title: string;
+  color: string;
   onPress: () => void;
 };
 
@@ -15,7 +16,7 @@ export function MyButton(props: ButtonProps) {
         marginRight: 80,
       }}
     >
-      <Button title={props.title} onPress={props.onPress} />
+      <Button color={props.color} title={props.title} onPress={props.onPress} />
     </View>
   );
 }

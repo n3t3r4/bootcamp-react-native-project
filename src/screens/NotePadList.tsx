@@ -3,6 +3,7 @@ import { api } from "../api";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ParamListBase } from "@react-navigation/native";
 import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import screens from "../screens/screens.json";
 
 type Notepads = {
   id: number;
@@ -39,7 +40,10 @@ export function NotePadList({
           <TouchableOpacity
             style={itemStyle.div}
             onPress={() => {
-              alert(`Vc clicou no ${item.item.title}`);
+              navigation.navigate(screens.viewNotePad, {
+                id: item.item.id,
+              });
+              /* alert(`Vc clicou no ${item.item.title}`) */
             }}
           >
             <Text style={itemStyle.id}>#{item.item.id}</Text>
@@ -52,7 +56,7 @@ export function NotePadList({
   );
 }
 
-const itemStyle = StyleSheet.create({
+export const itemStyle = StyleSheet.create({
   div: {
     padding: 20,
     borderBottomColor: "black",
@@ -68,5 +72,9 @@ const itemStyle = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontStyle: "italic",
+  },
+  content: {
+    fontSize: 16,
+    marginTop: 6,
   },
 });

@@ -69,6 +69,9 @@ export default function App() {
             name={screens.viewNotePad}
             component={ViewNotePad}
             options={{
+              drawerItemStyle: {
+                display: "none",
+              },
               drawerIcon: ({ color, size }) => {
                 return (
                   <FontAwesome name="sticky-note" size={size} color={color} />
