@@ -13,6 +13,8 @@ const initialNotePad = {
   title: "",
   subtitle: "",
   content: "",
+  latitude: -9.449060546306088,
+  longitude: -50.80078125,
 };
 
 export function CreateNotePad({
@@ -50,10 +52,11 @@ export function CreateNotePad({
         title="Send"
         color=""
         onPress={() => {
-          api.post("/notepads/", newNote).then(() => {
+          api.post("/notepads/", newNote).then((data) => {
             /* console.log(newNote); */
             Toast.show("Created New Note");
             navigation.navigate(screens.notePadList);
+            console.log(data);
           });
         }}
       ></MyButton>

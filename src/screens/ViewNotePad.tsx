@@ -15,6 +15,8 @@ export type Notepads = {
   subtitle: string;
   content: string;
   created_at: string;
+  latitude: number | null;
+  longitude: number | null;
 };
 
 export function ViewNotePad({
@@ -29,6 +31,8 @@ export function ViewNotePad({
     subtitle: "",
     content: "",
     created_at: "",
+    latitude: null,
+    longitude: null,
   };
 
   const [currentNotePad, updateCurrentNotePad] = useState(initialNotePads);
@@ -46,7 +50,21 @@ export function ViewNotePad({
       <Text style={itemStyle.title}>{currentNotePad.title}</Text>
       <Text style={itemStyle.subtitle}>{currentNotePad.subtitle}</Text>
       <Text style={itemStyle.content}>{currentNotePad.content}</Text>
+      <Text style={itemStyle.id}>Latitude: {currentNotePad.latitude}</Text>
+      <Text style={itemStyle.id}>Longitude: {currentNotePad.longitude}</Text>
 
+      <MyButton
+        title="See on map"
+        onPress={() => {
+          navigation.navigate(screens.home, {
+            /* coords: {
+              latitude: currentNotePad.latitude,
+              longitude: currentNotePad.longitude,
+            }, */
+          });
+        }}
+        color=""
+      ></MyButton>
       <MyButton
         title="Edit"
         onPress={() => {

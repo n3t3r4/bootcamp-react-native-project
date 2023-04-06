@@ -21,6 +21,8 @@ export function EditNotePad({
     subtitle: "",
     content: "",
     created_at: "",
+    latitude: 0,
+    longitude: 0,
   };
 
   const [notepad, updateNotepad] = useState(initialNotepad);
