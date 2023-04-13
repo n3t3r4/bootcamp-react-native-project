@@ -57,10 +57,10 @@ export function ViewNotePad({
         title="See on map"
         onPress={() => {
           navigation.navigate(screens.home, {
-            /* coords: {
+            coords: {
               latitude: currentNotePad.latitude,
               longitude: currentNotePad.longitude,
-            }, */
+            },
           });
         }}
         color=""

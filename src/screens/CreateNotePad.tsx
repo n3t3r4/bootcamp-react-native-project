@@ -53,10 +53,14 @@ export function CreateNotePad({
         color=""
         onPress={() => {
           api.post("/notepads/", newNote).then((data) => {
+            if (data.data.sucess) {
+              Toast.show("Created New Note");
+              navigation.navigate(screens.notePadList);
+            } else {
+              Toast.show(data.data.errors[0].message);
+            }
             /* console.log(newNote); */
-            Toast.show("Created New Note");
-            navigation.navigate(screens.notePadList);
-            console.log(data);
+            /* console.log(data); */
           });
         }}
       ></MyButton>
